@@ -1,0 +1,14 @@
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+main:
+    path:           /
+    defaults:       { _controller: AppBundle:Default:index }
+
+hashtag:
+    path:           /hashtag/{hashtag}
+    defaults:       { _controller: AppBundle:Default:index }
+    requirements:
+        hashtag: '[\w-]+'
+

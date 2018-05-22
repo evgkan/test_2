@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="site-index">
+
+        <div class="body-content">
+            <div class="row">
+                <div class="col-lg-8">
+
+                    <h2>Поиск:</h2>
+                    <form method="get">
+                        <input type="text" name="searchTerm" value="{{ searchTerm }}">
+                    </form>
+
+                    <h2>Новости</h2>
+
+                    {% if searchHashtag %}
+                        <h4>{{ searchHashtag? ' по хэштегу '~searchHashtag }}</h4>
+                        <a href="{{ path('main') }}">Вернуться на главную</a>
+                    {% endif %}
+
+                    <div class="count">
+                        Найдено: {{ pagination.getTotalItemCount }}
+                    </div>
+                    <br>
+
+                    {% for item in pagination %}
+                        <p>
+                            {{ item.createdAt|date('d-m-Y H:i:s') }}<br>
+                            {{ item.text|raw }}<br>
+                            Хэштэги:
+                            {% if item.hashtags %}
+                                {{ item.hashtags|join(', ') }}
+                            {% else %}
+                                нет
+                            {% endif %}
+                        </p>
+                        <hr>
+                    {% endfor %}
+
+                    <div class="navigation">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+                    <h2>Популярные хэштэги за 20 дней</h2>
+                    {% for name,count in popHashtags %}
+                        <p><a href="{{ path('hashtag', {hashtag: name}) }}">{{ name }}</a> ({{ count }})</p>
+                    {% else %}
+                        <p>не найдено</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <style>
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+
+{% endblock %}

@@ -1,0 +1,161 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="news")
+ */
+class News
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $twitter_id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $content;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $hastags;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $created_at;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $publicated_at;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return News
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param integer $createdAt
+     *
+     * @return News
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return integer
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * Set publicatedAt
+     *
+     * @param integer $publicatedAt
+     *
+     * @return News
+     */
+    public function setPublicatedAt($publicatedAt)
+    {
+        $this->publicated_at = $publicatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get publicatedAt
+     *
+     * @return integer
+     */
+    public function getPublicatedAt()
+    {
+        return $this->publicated_at;
+    }
+
+    /**
+     * Set hastags
+     *
+     * @param string $hastags
+     *
+     * @return News
+     */
+    public function setHastags($hastags)
+    {
+        $this->hastags = $hastags;
+
+        return $this;
+    }
+
+    /**
+     * Get hastags
+     *
+     * @return string
+     */
+    public function getHastags()
+    {
+        return $this->hastags;
+    }
+}
